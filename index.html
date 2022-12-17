@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optical character recognition from Doodle</title>
+    <style>
+       body{
+       padding: 0px 100px;
+       font-family: sans-serif;
+       }
+       /* Some CSS styling */
+       .leftside {
+       float:left;
+       width:220px;
+       height:285px;
+       background-color:#e4caff;
+       padding:10px;
+       border-radius:4px;
+       }
+       .rightside {
+       float:left;
+       margin-left:10px;
+       }
+       #doodlepad {
+       float:left;
+       height:300px;
+       width:400px;
+       border:2px solid #888;
+       border-radius:4px;
+       position:relative;
+       }
+       #clearbutton, #recognize {
+       font-size: 15px;
+       -webkit-appearance: none;
+       background: #eee;
+       border: 1px solid #888;
+       }
+       /* Credit for the button : https://getcssscan.com/css-buttons-examples by Michael Millan */
+       .button-54 {
+       text-decoration: none;
+       text-transform: uppercase;
+       color: #000;
+       cursor: pointer;
+       border: 3px solid;
+       padding: 0.25em 0.5em;
+       box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+       position: relative;
+       user-select: none;
+       -webkit-user-select: none;
+       touch-action: manipulation;
+       }
+       .button-54:active {
+       box-shadow: 0px 0px 0px 0px;
+       top: 5px;
+       left: 5px;
+       }
+       @media (min-width: 768px) {
+       .button-54 {
+       padding: 0.25em 0.75em;
+       }
+       }
+       /* CSS credits : https://codepen.io/Founts/pen/AJyVOr */
+       .talk-bubble {
+       margin: 40px;
+       display: inline-block;
+       position: relative;
+       width: 200px;
+       height: auto;
+       background-color:#e4caff;
+       }
+       .border{
+       border: 8px solid #666;
+       }
+       .round{
+       border-radius: 30px;
+       -webkit-border-radius: 30px;
+       -moz-border-radius: 30px;
+       }
+       .tri-right.left-top:after{
+       content: ' ';
+       position: absolute;
+       width: 0;
+       height: 0;
+       left: -20px;
+       right: auto;
+       top: 0px;
+       bottom: auto;
+       border: 22px solid;
+       border-color: lightyellow transparent transparent transparent;
+       }
+       /* talk bubble contents */
+       .talktext{
+       padding: 1em;
+       text-align: left;
+       line-height: 1.5em;
+       }
+    </style>
+ </head>
+ <body onload="init()">
+ <header>
+         <h1>Simple Doodle Recognizer using Tesseract.js</h1>
+     </header>
+    <div id="thedoodlepad">
+       <div class="leftside">
+          <p>Doodle an alphabet( or word) by tapping or dragging.</p>
+          <p>Touch and mouse supported!</p>
+          <p>Should work on most devices!(Firefox,chrome,brave,IOS and android)</p>
+          <p>Hit the initialize recognition after you're done doodling!</p>
+          <button class="button-54" role="button"id="clearbutton" onclick="clearCanvas(canvas,ctx);">Clear Doodle</button> 
+          <button class="button-54" role="button"id="recognize">Initialize Recognition</button>
+       </div>
+       <div class="rightside">
+          <canvas id="doodlepad" height="300" width="400">
+          </canvas>
+       </div>
+    </div>
+    <div class="container">
+        <div class="progress"></div>
+       <div class="upper">
+          <div class="talk-bubble  round border left-top">
+             <div class="talktext">
+                <h4></h4>
+             </div>
+          </div>
+       </div>
+    </div>
+    <script src="https://unpkg.com/tesseract.js@v2.0.0-alpha.13/dist/tesseract.min.js"></script>
+    <script src="script.js"></script>
+ </body>
+ </html>
